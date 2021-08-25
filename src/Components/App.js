@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Comments from './Comments';
-import {APIKEY} from '../key/key';
+// import {APIKEY} from '../key/key';
 import './App.css';
 
 const App = (props) => {
@@ -35,7 +35,10 @@ const App = (props) => {
         
         const postComment = () => {
             axios.post('http://localhost:5000/api/comments', {
-                commentText: "This is React-2",
+                userName: "anonymous",
+                commentText: "This is React-3",
+                like: 300,
+                dislike: 700,
             })
             .then((response) => setComments(response.data))
             .catch((error) => console.log(error)) 

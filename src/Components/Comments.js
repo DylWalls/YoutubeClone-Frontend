@@ -5,7 +5,7 @@ const Comments = ({comments}) => {
 
     return (
         <ul>
-            {comments.map((comment, index) => <li key={index}>{comment._id} {comment.commentText}</li>)}
+            {comments.map((comment, index) => <li key={index}>{comment._id} {comment.commentText} {comment.userName} {comment.like} {comment.dislike}</li>)}
         </ul>
     )
 }
