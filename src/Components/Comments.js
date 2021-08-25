@@ -1,20 +1,42 @@
-import React from 'react'
+// import { render } from '@testing-library/react';
+import React from 'react';
 
-function AddComment(props) {
+const Comments = ({comments}) => {
+
     return (
-    <div className="row row-spacer">
-        <div className="col-md-12">
-            <div>
-            <label>
-            Add Comment: <input type="text"/>
-            <button>Submit</button>
-            </label>
-            </div>
-        </div>
-    </div>
-    );
-    }
-    export default AddComment;
+        <ul>
+            {comments.map((comment, index) => <li key={index}>{comment._id} {comment.commentText}</li>)}
+        </ul>
+    )
+}
+
+export default Comments;
+
+// constructor(props) {
+//     super(props);
+//     this.addComment = this.addComment.bind(this);
+// }
+
+// addComment() {
+//     console.log('Comment Added');
+// }
+
+//     render() {
+//     return (
+//     <div className="row row-spacer">
+//         <div className="col-md-12">
+//             <div>
+//             <label>
+//             Add Comment: <input type="text"/>
+//             <button onClick={this.addComment}>Submit</button>
+//             </label>
+//             </div>
+//         </div>
+//     </div>
+//         );
+//     }
+// }
+//     export default AddComment;
 
 // export const AddComment= () => {
 
