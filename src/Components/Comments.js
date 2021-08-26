@@ -1,11 +1,12 @@
 // import { render } from '@testing-library/react';
 import React from 'react';
 
-const Comments = ({comments}) => {
+const Comments = ({comments, postReply}) => {
 
     return (
         <ul>
-            {comments.map((comment, index) => <li key={index}>{comment._id} {comment.commentText} {comment.userName} {comment.like} {comment.dislike}</li>)}
+            {comments.map((comment, index) => <li key={index}><button onClick = {postReply(comment._id)}>Reply</button> {comment._id} Username: {comment.userName}  {comment.commentText}   
+            Likes: {comment.like} Dislikes: {comment.dislike}</li>)}
         </ul>
     )
 }

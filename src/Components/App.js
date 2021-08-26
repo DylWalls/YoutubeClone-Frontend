@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Comments from './Comments';
-// import {APIKEY} from '../key/key';
+import {APIKEY} from './key/key';
 import './App.css';
 
 const App = (props) => {
-    const [youtubeVideos, setYoutubeVideos] = useState([]);
+    // const [youtubeVideos, setYoutubeVideos] = useState([]);
     const [comments, setComments] = useState([]);
 
     // const DUMMY_ARRAY = ['Cat', 'Dog', 'Mouse']
@@ -35,7 +35,7 @@ const App = (props) => {
         
         const postComment = () => {
             axios.post('http://localhost:5000/api/comments', {
-                userName: "anonymous",
+                userName: "Anonymous",
                 commentText: "This is React-3",
                 like: 300,
                 dislike: 700,
@@ -44,17 +44,31 @@ const App = (props) => {
             .catch((error) => console.log(error)) 
         }
         
+        const putComment = (cid) => {
+            axios.put(`http://localhost:5000/api/comments/${cid}`)
+            .then((response) => (response.data))
+            .catch((error) => console.log(error))
+        }
+
+        const postReply = (cid) => {
+            axios.post(`http://localhost:5000/api/comments/${cid}`,{
+            replyText: "This is a test."
+        })
+            .then((response) => (response.data))
+            .catch((error) => console.log(error))
+        }
+
         useEffect(() => {
            axios.get('http://localhost:5000/api/comments')
                 .then((response) => setComments(response.data))
-        },[postComment]); 
+                .catch((error) => console.log(error))
+        },[postComment, putComment, postReply]); 
         
-
         // const CommentUpdate = () => {
         
         // }
         
-
+        
     // handleChange(e){
     //     this.setState ({
     //       addComment: e.target.value
@@ -69,7 +83,7 @@ const App = (props) => {
         //     <h1>{youtubeVideos.title}</h1>
         // </div>
         <div>
-            <Comments comments={comments}/>
+            <Comments comments={comments} postReply = {postReply}/>
                 <button onClick={postComment}>Click Me to Post New Comment</button>
         </div>
     );
