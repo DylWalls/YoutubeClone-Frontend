@@ -5,15 +5,28 @@ const Comments = ({comments, postReply}) => {
 
     return (
         <ul>
-            {comments.map((comment, index) => <li key={index}><button onClick = {postReply(comment._id)}>Reply</button> {comment._id} Username: {comment.userName}  {comment.commentText}   
-            Likes: {comment.like} Dislikes: {comment.dislike}</li>)}
+            {comments.map((comment, index) => {
+            return(
+            <li key={index}>
+                <button onClick = {() => postReply(comment._id)}>Reply</button>
+                 {comment._id} 
+                 Username: {comment.userName}  
+                 {comment.commentText}   
+                Likes: {comment.like} 
+                Dislikes: {comment.dislike} 
+                <ul>
+                    {comment.replies.map((reply, index) => <li key={index}>{reply.replyText}</li>)}
+                </ul>
+            </li>
+            )
+        })}    
         </ul>
     )
 }
 
 export default Comments;
 
-// constructor(props) {
+// constructor(props) 
 //     super(props);
 //     this.addComment = this.addComment.bind(this);
 // }
