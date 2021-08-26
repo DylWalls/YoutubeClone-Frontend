@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Comments from './Comments';
-import {APIKEY} from './key/key';
+import LikeButton from './Buttons';
+// import {APIKEY} from './key/key';
 import './App.css';
 
 const App = (props) => {
     // const [youtubeVideos, setYoutubeVideos] = useState([]);
     const [comments, setComments] = useState([]);
-
-    // const DUMMY_ARRAY = ['Cat', 'Dog', 'Mouse']
-
-
-    
     
     // useEffect(() => {
         //     axios.get(`https://www.googleapis.com/youtube/v3/search?q=mernstack&key=${APIKEY}`)
         //         .then(response => setYoutubeVideos(response.data[props.index])
         //     )}, [youtubeVideos, props.index]);
-        // }
-        
-        // const handleSubmit = (e) => {
-        //     e.preventDefault();
-        //     console.log(e);
         // }
         
         // useEffect(() => {
@@ -36,9 +27,9 @@ const App = (props) => {
         const postComment = () => {
             axios.post('http://localhost:5000/api/comments', {
                 userName: "Anonymous",
-                commentText: "This is React-3",
-                like: 300,
-                dislike: 700,
+                commentText: "This is a comment by Anonymous Mark",
+                like: 0,
+                dislike: 0,
             })
             .then((response) => setComments(response.data))
             .catch((error) => console.log(error)) 
@@ -52,7 +43,7 @@ const App = (props) => {
 
         const postReply = (cid) => {
             axios.post(`http://localhost:5000/api/comments/${cid}`,{
-            replyText: "This is a test."
+            replyText: "This is a reply."
         })
             .then((response) => (response.data))
             .catch((error) => console.log(error))
@@ -63,28 +54,17 @@ const App = (props) => {
                 .then((response) => setComments(response.data))
                 .catch((error) => console.log(error))
         },[postComment, putComment, postReply]); 
-        
-        // const CommentUpdate = () => {
-        
-        // }
-        
-        
-    // handleChange(e){
-    //     this.setState ({
-    //       addComment: e.target.value
-    //     });
-    
-    // submit = (e) => {
-    //     e.addComment();
-    // }
 
     return (
         // <div>
         //     <h1>{youtubeVideos.title}</h1>
         // </div>
         <div>
+            <h1 className="main-title">YooToob</h1>
+           
             <Comments comments={comments} postReply = {postReply}/>
-                <button onClick={postComment}>Click Me to Post New Comment</button>
+            <LikeButton /><br></br>
+            <button onClick={postComment}>Click Me to Post New Comment</button>
         </div>
     );
 }

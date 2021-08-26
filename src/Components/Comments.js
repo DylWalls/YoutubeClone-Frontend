@@ -4,19 +4,20 @@ import React from 'react';
 const Comments = ({comments, postReply}) => {
 
     return (
-        <ul>
+        <ul className="ul">
             {comments.map((comment, index) => {
             return(
             <li key={index}>
-                <button onClick = {() => postReply(comment._id)}>Reply</button>
                  {comment._id} 
-                 Username: {comment.userName}  
-                 {comment.commentText}   
-                Likes: {comment.like} 
+                Username: {comment.userName}<br></br>
+                  {comment.commentText}<br></br>   
+                Likes: {comment.like}&nbsp;&nbsp; 
                 Dislikes: {comment.dislike} 
+                &nbsp;&nbsp;<button onClick = {() => postReply(comment._id)}>Reply</button>
                 <ul>
                     {comment.replies.map((reply, index) => <li key={index}>{reply.replyText}</li>)}
                 </ul>
+                <br></br>
             </li>
             )
         })}    
