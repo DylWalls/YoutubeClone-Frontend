@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Comments from './Comments';
 import LikeButton from './Buttons';
+import SearchBar from './Search';
+import VideoPlayer from './Video';
 import {APIKEY} from '../key/key';
 import './App.css';
 
@@ -96,6 +98,8 @@ const App = (props) => {
         // </div>
         <div>
             <h1 className="main-title">YooToob</h1>
+            <SearchBar />
+            <VideoPlayer />
             <Comments comments={comments} postReply = {postReply} getVideo={getVideo}/>
             <LikeButton /><br></br>
             <button onClick={postComment}>Click Me to Post New Comment</button>
