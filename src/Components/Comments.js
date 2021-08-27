@@ -1,13 +1,16 @@
 // import { render } from '@testing-library/react';
 import React from 'react';
 
-const Comments = ({comments, postReply}) => {
+const Comments = ({comments, postReply, getVideo}) => {
 
     return (
         <ul className="ul">
             {comments.map((comment, index) => {
             return(
             <li key={index}>
+                {/* <iframe id="ytplayer" type="text/html" width="640" height="360"
+                src={getVideo(comment._id)}
+                frameborder="0"></iframe><br></br>  */}
                  {comment._id} 
                 Username: {comment.userName}<br></br>
                   {comment.commentText}<br></br>   
